@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+
+        <RelativeLayout
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="1dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/verify"
+            app:tint="#4CAF50" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recharge Successful"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#4CAF50" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="27 Apr 23 15:34"
+            android:id="@+id/createdAtTextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="#999999" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100 ₹"
+            android:id="@+id/paymentTextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#03A9FA" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card ID : B2 7F 29 1B"
+            android:id="@+id/cardIdTextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#999999" />
+    </LinearLayout>
+        </LinearLayout></androidx.cardview.widget.CardView>
+</LinearLayout>

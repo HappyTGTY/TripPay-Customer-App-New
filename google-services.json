@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832635563447",
+    "project_id": "trippay-33260",
+    "storage_bucket": "trippay-33260.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832635563447:android:e46c74985ebb7f490b4c32",
+        "android_client_info": {
+          "package_name": "com.example.trippaycustomer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCupda1xRfVsTLI8KbJDTtVFoHNwy6fDWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

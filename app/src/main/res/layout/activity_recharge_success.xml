@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/activity_recharge_success.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/sucess"
+    android:gravity="center">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/tvCardId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Card ID: " />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Amount: " />
+
+    <TextView
+        android:id="@+id/tvTransactionId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaction ID: "
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Add any other UI elements you want to display -->
+
+</LinearLayout>

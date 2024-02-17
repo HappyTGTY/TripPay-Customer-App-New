@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/item_riding_data.xml -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <RelativeLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="1dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/recharge"
+                    app:tint="#E61818" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paid"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="#1A237E" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:id="@+id/textViewStartPoint"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:id="@+id/sep"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="27 Apr 23 15:34"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                   android:id="@+id/textViewLogTime"
+                    android:textColor="#999999" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12 ₹"
+                    android:id="@+id/textViewTotalFare"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#03A9FA" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:id="@+id/textViewEndPoint"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:id="@+id/eep"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewDriverName"
+                    android:text="Rupesh Singh [UP9S5464]"
+                    android:textSize="11dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="#999999" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/textViewTotalDistance"/>
+
+
+
+</LinearLayout>
