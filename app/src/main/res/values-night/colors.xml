@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background"> #171717 </color>
+    <color name="layer_One_Background"> #3B3B3B </color>
+    <color name="textTint"> #53A8F5 </color>
+
+    <color name="dirtyBlue"> #384761 </color>
+    <color name="orangeShade_One"> #5C472C </color>
+
+    <color name="brownBackground"> #4F453E </color>
+    <color name="orangeTextTint">#F29113 </color>
+    <color name="orangeTint"> #B56C0E</color>
+
+    <color name="gradient_OneBeginning"> #80633D</color>
+    <color name="gradient_OneEnd"> #4D4D4D</color>
+
+    <color name="aqua">#327282</color>
+
+    <color name="orangeShade_Two"> #5C472C </color>
+
+    <color name="deepBlue">#5A83FF</color>
+    <color name="dimGreen">#39BA3E</color>
+</resources>

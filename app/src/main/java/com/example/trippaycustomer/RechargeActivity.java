@@ -3,12 +3,16 @@ package com.example.trippaycustomer;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,21 +27,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RechargeActivity extends AppCompatActivity {
-    EditText cardid,amount;
+    EditText cardid,amount,utr;
     Button recharge;
+    ImageView copy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge);
-        amount=findViewById(R.id.tvamount);
-        cardid=findViewById(R.id.tvcardid);
-        recharge=findViewById(R.id.btnRecharge);
+
+        amount = findViewById(R.id.utr);
+        cardid = findViewById(R.id.tvcardid);
+        recharge = findViewById(R.id.btnRecharge);
+        utr = findViewById(R.id.utr);
+        copy = findViewById(R.id.ImageView_copy);
+
+        // Add activity to the copy button
+        {
+            copy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClipboardManager clipboard = (ClipboardManager)
+                            getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clipData = ClipData.newPlainText("Payment UPI", "7065740848@paytm");
+                    // Set the clipboard's primary clip.
+                    clipboard.setPrimaryClip(clipData);
+                }
+            });
+        }
 
         Intent intent = getIntent();
         if (intent != null) {
             String reccardid = intent.getStringExtra("cardid"); // -1 is the default value if the key is not found
-           // Toast.makeText(this, "cardid "+cardid, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "cardid "+cardid, Toast.LENGTH_SHORT).show();
             cardid.setText(reccardid);
         }
 
@@ -49,16 +71,26 @@ public class RechargeActivity extends AppCompatActivity {
 
                 // Replace 'R1234' and '50' with the actual cardId and amount
                 String cardId = cardid.getText().toString().trim();
-                String amountt = amount.getText().toString().trim();
+                String amountS = amount.getText().toString().trim();
+                String utrS = amount.getText().toString().trim();
 
-               if (cardId.isEmpty() || amountt.isEmpty()) {
-                     Toast.makeText(RechargeActivity.this, "Please enter Amount", Toast.LENGTH_SHORT).show();
+                //checks whether amount and utr are pure integers
+                try {
+                   Integer.parseInt(utrS);
+                   Integer.parseInt(amountS);
+                } catch (Exception e) {
+                    Toast.makeText(RechargeActivity.this, "Invalid Entry", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (cardId.isEmpty() || amountS.isEmpty() || utrS.isEmpty()) {
+                    Toast.makeText(RechargeActivity.this, "Please enter Card Id", Toast.LENGTH_SHORT).show();
                 } else {
-                    sendPostRequest(apiUrl, cardId, amountt);
+                    sendPostRequest(apiUrl, cardId, amountS,utrS);
                 }
             }
 
-            private void sendPostRequest(String apiUrl, final String cardId, final String amount) {
+            private void sendPostRequest(String apiUrl, final String cardId, final String amount,final String utrS) {
                 RequestQueue queue = Volley.newRequestQueue(RechargeActivity.this);
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, apiUrl,
@@ -66,7 +98,7 @@ public class RechargeActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 showRechargeSuccessPopup(cardId, amount);
-                             }
+                            }
 
                             private void showRechargeSuccessPopup(String cardId, String amount) {
                                 // Inflate the dialog layout
@@ -116,6 +148,7 @@ public class RechargeActivity extends AppCompatActivity {
                         Map<String, String> params = new HashMap<>();
                         params.put("cardid", cardId);
                         params.put("amount", amount);
+                        params.put("utr",utrS);
                         return params;
                     }
                 };

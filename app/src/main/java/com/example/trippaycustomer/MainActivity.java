@@ -32,42 +32,65 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     TextView username,totalBalance,Trips,spend,totaltravel;
     private SwipeRefreshLayout swipeRefreshLayout;
-int totals=0;
-int totald=0;
-String emailREC,deviceidREC;
+    int totals=0;
+    int totald=0;
+    String emailREC,deviceidREC;
+    private ImageView photo,logout,referButton,rewardsButton,transactionHistory,chatSupport,rechargeHistory,helpButton,settingButton,shareButton;
+    private Button rechargeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
-        ImageView im=(ImageView)findViewById(R.id.logout);
-        im.setOnClickListener(new View.OnClickListener() {
+
+        referButton = findViewById(R.id.btnRefer);
+        rewardsButton = findViewById(R.id.btnRewards);
+        transactionHistory = findViewById(R.id.history);
+        chatSupport = findViewById(R.id.btnChatSupport);
+        rechargeHistory = findViewById(R.id.btnRechargeHistory);
+        helpButton = findViewById(R.id.btnHelp);
+        settingButton = findViewById(R.id.btnSettings);
+        shareButton = findViewById(R.id.btnShare);
+
+        rechargeButton = findViewById(R.id.button_recharge);
+
+        username=findViewById(R.id.username);
+        totalBalance=findViewById(R.id.balance);
+        Trips=findViewById(R.id.Trips);
+        spend=findViewById(R.id.spend);
+        totaltravel=findViewById(R.id.totaltravel);
+
+        Intent intent = getIntent();
+
+        //Adds the On click listener to all the bottom images and adds intent to start the activity
+        initializeAllActivityIntents();
+
+
+        //Performs logout on tapping logout icon
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showLogoutConfirmationDialog();
             }
         });
 
-        ImageView referButton = findViewById(R.id.btnRefer);
-        ImageView rewardsButton = findViewById(R.id.btnRewards);
-        ImageView transactionHistory = findViewById(R.id.history);
-        ImageView chatSupport = findViewById(R.id.btnChatSupport);
-        ImageView rechargeHistory = findViewById(R.id.btnRechargeHistory);
-        ImageView helpButton = findViewById(R.id.btnHelp);
-        ImageView settingButton = findViewById(R.id.btnSettings);
-        ImageView shareButton = findViewById(R.id.btnShare);
-        Button rechargeButton = findViewById(R.id.button_recharge);
-        username=findViewById(R.id.username);
-        totalBalance=findViewById(R.id.balance);
-        Trips=findViewById(R.id.Trips);
-        spend=findViewById(R.id.spend);
-        totaltravel=findViewById(R.id.totaltravel);
-        Intent intent = getIntent();
+
+        photo = findViewById(R.id.photo);
+        photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //create a new activity for user Details and add it to here
+            }
+        });
+
+
+        //Update all the information
         if (intent != null) {
             int userId = intent.getIntExtra("userid", -1); // -1 is the default value if the key is not found
             String userEmail = intent.getStringExtra("email");
-//            Toast.makeText(this, "id : "+userId, Toast.LENGTH_SHORT).show();
-//            Toast.makeText(this, "email : "+userEmail, Toast.LENGTH_SHORT).show();
+            //            Toast.makeText(this, "id : "+userId, Toast.LENGTH_SHORT).show();
+            //            Toast.makeText(this, "email : "+userEmail, Toast.LENGTH_SHORT).show();
             emailREC=userEmail;
             fetchData(userEmail);
         }
@@ -77,10 +100,11 @@ String emailREC,deviceidREC;
             public void onRefresh() {
                 fetchData(emailREC);
                 swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(MainActivity.this,"Details Updated Successfully", Toast.LENGTH_SHORT).show();
             }
         });
-
-
+    }
+    private void initializeAllActivityIntents() {
 
         referButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,8 +160,15 @@ String emailREC,deviceidREC;
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, HelpActivity.class);
-                startActivity(intent);
+                //Were meant to start the help Activity
+//                Intent intent = new Intent(MainActivity.this, HelpActivity.class);
+//                startActivity(intent);
+
+                //Currently transfering the page to gmail with default email
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"help@trippay.in"});
+                emailIntent.setType("message/rfc822");
+                startActivity(Intent.createChooser(emailIntent, "Email"));
             }
         });
 
@@ -152,8 +183,14 @@ String emailREC,deviceidREC;
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_VIEW);
-                startActivity(intent);
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                //Here the URL to the app needs to be added
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "URL");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
             }
         });
     }
@@ -194,7 +231,7 @@ String emailREC,deviceidREC;
                                         totald += totalDistance;
                                         totals += totalFare;
                                         spend.setText(String.valueOf("₹" + totals + " Spent"));
-                                        Trips.setText(String.valueOf((i + 1) + "Trips Taken"));
+                                        Trips.setText(String.valueOf((i + 1) + " Trips\nTaken"));
                                         totaltravel.setText(String.valueOf(totald + "km \nTravelled"));
                                     } catch (NumberFormatException e) {
                                         // Handle the exception, e.g., log it or show an error message
@@ -236,6 +273,7 @@ String emailREC,deviceidREC;
     @Override
     public void onBackPressed() {
         showLogoutConfirmationDialog();
+        super.onBackPressed();
     }
 
     private void showLogoutConfirmationDialog() {

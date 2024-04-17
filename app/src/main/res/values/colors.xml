@@ -12,4 +12,24 @@
     <color name="grey">#808580</color>
     <color name="orange">#F44C17</color>
 
+    <color name="background"> #F8EEEC </color>
+    <color name="layer_One_Background"> #FFFFFF </color>
+    <color name="textTint"> #2E3D6D </color>
+
+    <color name="dirtyBlue"> #4c6184 </color>
+    <color name="orangeShade_One"> #f9c177 </color>
+
+    <color name="brownBackground"> #FFE0C8 </color>
+    <color name="orangeTextTint">#C77710 </color>
+    <color name="orangeTint"> #C77710</color>
+    <color name="whiteTextTint"> </color>
+
+    <color name="gradient_OneBeginning"> #f9c177</color>
+    <color name="gradient_OneEnd"> #bebebe</color>
+
+    <color name="aqua">#55C3DF</color>
+    <color name="orangeShade_Two"> #C77710 </color>
+
+    <color name="deepBlue">#1A237E</color>
+    <color name="dimGreen">#29872D</color>
 </resources>

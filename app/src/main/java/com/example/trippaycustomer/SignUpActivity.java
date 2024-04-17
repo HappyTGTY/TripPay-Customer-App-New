@@ -51,6 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle signup logic
+
                 signup();
             }
         });
@@ -70,6 +71,11 @@ public class SignUpActivity extends AppCompatActivity {
         String fullName = editTextFullName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        if(email.equals("") || fullName.equals("") || password.equals("")) {
+
+            Toast.makeText(SignUpActivity.this, "Enter Complete Information", Toast.LENGTH_SHORT).show();
+               return;
+        }
         boolean isDriver = checkBoxIsDriver.isChecked();
 
         // Validate input (you can add more validation as needed)

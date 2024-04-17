@@ -10,13 +10,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:orientation="vertical"
-        android:background="#E8F8FA">
+        android:background="@color/background"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/refer_and_earn"/>
+            android:src="@drawable/refer_and_earn" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
